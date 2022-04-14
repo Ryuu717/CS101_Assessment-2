@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mcdonald's</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://mcdonalds.co.nz/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- CSS,Javascript -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> 
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Header(Navbar) -->
+  <header>
+    <!-- Backdrop for modal -->
+    <div id="backdrop"></div>
+
+    <nav class="navbar">
+      <div class="container">
+
+        <ul class="nav">
+          <li>
+            <a class="" href="index.html">
+                <img id="logo" src="Images/logo.svg" alt="Logo">
+            </a>
+          </li>
+          <li>
+            <ul class="nav-item">
+              <li>
+                <a class="nav-link" href="#">Menu</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">Coupon</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">Campaign</a>
+              </li>
+              <li>
+                <a class="nav-link contact" href="#">Contact</a>
+              </li>
+              <li>
+                <a class="nav-link">| </a>
+              </li>
+              <li>
+                <a id="search-align" href="#">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- contact Modal -->
+        <aside class="modal" id="contact-overlay">
+          <div class="relative">
+            <a class="hidden absolute-top-right close" id="contact-close" href="#">
+              <img class="img-xs" src="images/close.png" alt="close-button">
+            </a>
+          </div>
+          <h2 class="center m-b-10">Contact</h2>
+          <div>
+            <h3 class="m-t-20">Auckland</h3>
+            <p class="m-0 m-l-10"><i class="fa-solid fa-location-dot"></i>260 Queen Street, Auckland CBD, Auckland 1010, New Zealand</p>
+            <p class="m-t-0 m-b-20"><i class="fa-solid fa-phone"></i>+6495394300</p>
+          </div>
+          <div>
+            <h3 class="m-t-20">Wellington</h3>
+            <p class="m-0 m-l-10"><i class="fa-solid fa-location-dot"></i>15/17 Taranaki Street, Te Aro, Wellington 6011, New Zealand</p>
+            <p class="m-t-0 m-b-20"><i class="fa-solid fa-phone"></i>+6443813940</p>
+          </div>
+          <div>
+            <h3 class="m-t-20">Taupo</h3>
+            <p class="m-0 m-l-10"><i class="fa-solid fa-location-dot"></i>CNR ROBERTS & RUAPEHU STREETS, 48 Roberts Street, Taupō 3330, New Zealand</p>
+            <p class="m-t-0 m-b-20"><i class="fa-solid fa-phone"></i>+6473788679</p>
+          </div>
+        </aside>
+
+        <!-- Login / Cart / HamburgerButton (Mobile) -->
+        <ul class="nav">
+          <li>
+            <a class="hidden" href="#">
+              <img class="img-xs login" src="images/user.png" alt="User">
+            </a>
+          </li>
+          <li>
+            <a class="hidden relative" href="#">
+              <img class="img-xs cart" src="images/shopping-cart.png" alt="Cart">
+              <div class="absolute">
+                <div class="m-l-15">
+                  <img class="img-xxs cart-status" id="cart-status-red" src="images/circle-red.png" alt="">
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="hidden" id="hamburger" href="#">
+              <img class="img-xs" src="images/hamburger.png" alt="hamburger-button">
+            </a>
+          </li>
+        </ul>
+
+        <!-- HamburgerButton Menu (Mobile) -->
+        <aside class="modal" id="content-list-overlay">
+          <div class="relative">
+            <a class="hidden absolute-top-right  close" id="close" href="#">
+              <img class="img-xs" src="images/close.png" alt="close-button">
+            </a>
+          </div>
+          <h2 class="m-b-15">Menu</h2>
+          <h2 class="m-b-15">Coupon</h2>
+          <h2 class="m-b-15">Campaign</h2>
+          <h2 class="m-b-15 contact">Contact</h2>
+          <h2 class="m-b-15">Shops</h2>
+          <h2 class="m-b-15">Online Order</h2>
+          <h2 class="m-b-15">Covid-19</h2>
+          <h2 class="m-b-15">About Us</h2>
+          <h2 class="m-b-15">Search</h2>
+        </aside>
+
+        <!-- Login / Cart (Laptop) -->
+        <div class="nav-item">
+          <ul class="nav">
+            <li>
+              <button class="btn btn-yellow login navbar-brand"><i class="fa-solid fa-user"></i> Login</button>
+              <button class="btn btn-red relative cart navbar-brand">
+                <i class="fa-solid fa-cart-shopping cart"></i> Your Cart
+                <span class="absolute">
+                  <span class="m-l-15">
+                    <img class="img-xxs cart-status" id="cart-status-white" src="images/circle-white.png" alt="">
+                  </span>
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Login Modal -->
+        <aside class="modal" id="login-overlay">
+          <div class="login-container m-x-auto">
+            <div class="relative">
+              <a class="hidden absolute-top-right  close" id="login-close" href="#">
+                <img class="img-xs" src="images/close.png" alt="close-button">
+              </a>
+            </div>
+            <h2 class="center m-b-10">Login</h2>
+            <form class="form">
+              <div class="form-control">
+                <label for="email">E-mail address</label>
+                <input type="email" name="email" required />
+              </div>
+              <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" name="password" required />
+              </div>
+              <div>
+                <p class="right underline">Forgot Your Password?</p>
+                <div class="d-grid  m-x-auto">
+                  <button class="btn btn-red">Login</button>
+                </div>
+                <p>Login with:</p>
+                <div>
+                  <img class="img-xs" src="images/google.png" alt="">
+                  <img class="img-xs" src="images/facebook.png" alt="">
+                  <img class="img-xs" src="images/twitter.png" alt="">
+                </div>
+                <p class="right">If you are not member...</p>
+                <p class="right">
+                  <a class="color-white underline" id="signup" href="#">Sign Up</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Signup Modal -->
+        <aside class="modal" id="signup-overlay">
+          <div class="login-container m-x-auto">
+            <div class="relative">
+              <a class="hidden absolute-top-right  close" id="signup-close" href="#">
+                <img class="img-xs" src="images/close.png" alt="close-button">
+              </a>
+            </div>
+            <h2 class="center m-b-10">Sign Up</h2>
+            <form class="form">
+              <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required />
+              </div>
+              <div class="form-control">
+                <label for="email">E-mail address</label>
+                <input type="email" name="email" id="email" required />
+              </div>
+              <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required />
+              </div>
+              <div class="form-control">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirm-password" id="confirm-password" required />
+              </div>
+              <div class="form-control">
+                <label for="address">Delivery address</label>
+                <input type="text" name="address" id="address" required />
+              </div>
+              <div class="radioLeft">
+                <p>Payment Method</p>
+                <input type="radio" name="payment" value="1" checked="checked">Credit Card <br>
+                <input type="radio" name="payment" value="2">Convenience Store/ ATM <br>
+                <input type="radio" name="payment" value="3">Internet Banking/ e-Money<br>
+                <input type="radio" name="payment" value="4">Pay Later <br>
+              </div>
+              <div>
+                <button type="reset" class="btn btn-red-border" id="cancel-config-btn">
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-red">Resister</button>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Cart Modal -->
+        <aside class="modal" id="cart-overlay">
+          <div class="modal-container m-x-auto  color-black">
+            <div class="relative">
+              <a class="hidden absolute-top-right close" id="cart-close" href="#">
+                <img class="img-xs" src="images/close-black.png" alt="close-button">
+              </a>
+            </div>
+            <h2 class="center m-b-20 color-black">Your Cart</h2>
+            <div class="row" id="cart-item-1">
+              <div class="col-6">
+                <div class="m-y-5">
+                  <span class="font-cart-items color-grey" id="cart-item-1-name"></span>
+                </div>
+                <div class="m-y-5">
+                  <span class="font-cart-items color-grey" id="cart-item-1-price"></span>
+                </div>
+              </div>
+              <div class="col-6 right">
+                <div class="inline-flex">
+                  <img class="img-xs minus-btn item-1-minus-btn" src="images/minus.png" alt="minus">
+                  <span class="font-cart-items color-grey item-1-counter">0</span>
+                  <img class="img-xs plus-btn item-1-plus-btn" src="images/plus.png" alt="plus">   
+                </div>
+                <div>
+                  <span class="font-cart-items m-0 color-grey" id="cart-item-1-subtotal"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="cart-item-2">
+              <div class="col-6">
+                <div class="m-y-5">
+                  <span class="font-cart-items color-grey" id="cart-item-2-name"></span>
+                </div>
+                <div class="m-y-5">
+                  <span class="font-cart-items color-grey" id="cart-item-2-price"></span>
+                </div>
+              </div>
+              <div class="col-6 right">
+                <div class="inline-flex">
+                  <img class="img-xs minus-btn item-2-minus-btn" src="images/minus.png" alt="minus">
+                  <span class="font-cart-items color-grey item-2-counter">0</span>
+                  <img class="img-xs plus-btn item-2-plus-btn" src="images/plus.png" alt="plus">   
+                </div>
+                <div>
+                  <span class="font-cart-items m-0 color-grey" id="cart-item-2-subtotal"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border m-10"></div>
+
+            <div class="m-t-10 right">
+              <span class="font-cart-total color-grey">Total Price:</span>
+              <span class="font-cart-total color-grey" id="total-price">$0</span>
+            </div>
+            <div class="row">
+              <button class="btn btn-red-border btn-w100 m-t-50" id="keep-shopping">Keep shopping</button>
+              <button class="btn btn-red btn-w100 m-t-0" id="proceed-to-payment">Proceed to payment</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main -->
+  <main>
+    <!-- Carousel -->
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+          <div class="slide">
+              <div class="slide-title">
+                <h1>Delicious.</h1>
+                <p class="italic m-t-0 font-15">Am I right?</p>
+              </div>
+              <img class="pc" src="images/main-img-1-lg.png" alt="main-img-1" />
+              <img class="mobile" src="images/main-img-1-sm.png" alt="main-img-1" />              
+          </div>
+          <div class="slide">
+              <img class="pc" src="images/main-img-2-lg.png" alt="main-img-2" />
+              <img class="mobile" src="images/main-img-2-sm.png" alt="main-img-2" />
+          </div>
+          <div class="slide">
+              <img class="pc" src="images/main-img-3-lg.png" alt="main-img-3" />
+              <img class="mobile" src="images/main-img-3-sm.png" alt="main-img-3" />
+          </div>
+      </div>
+      <div>
+        <button id="left" class="left-arrow arrow">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="right" class="right-arrow arrow">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section Border -->
+    <div class="section-border"></div>
+
+
+    <!-- Information -->
+    <div class="container-xs m-t-30">
+      <h3 class="m-10 font-12 ">Information</h3>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="color-green">1/3/2022</th>
+            <td>❗️ Changes in business hours due to lockdown</td>
+          </tr>
+          <tr>
+            <th class="color-green">1/3/2022</th>
+            <td>😷 Updated Covid-19 Policy</td>
+          </tr>
+          <tr>
+            <th class="color-green">1/3/2022</th>
+            <td>🌟 Debut of plant-based burgers</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="right m-b-50 underline">
+        <a href="#">See All</a>
+      </p>
+    </div>
+
+  
+    <!-- Content List -->
+    <div class="container-sm">
+      <div class="row justify-content-around center">
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-brown" src="images/burger.png" alt="Burger"><br>Menu</a>
+        </div>
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-yellow" src="images/coupon.png" alt="Coupon"><br>Coupon</a>
+        </div>
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-green" src="images/campaign.png" alt="Campaign"><br>Campaign</a>
+        </div>
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-emerald" src="images/globe.png" alt="Online Order"><br>Online Order</a>
+        </div>
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-blue" src="images/mask.png" alt="Mask"><br>Mask</a>
+        </div>
+        <div class="col-4 m-b-20">
+          <a href="#"><img class="img-md img-circle img-pink" src="images/playground.png" alt="Playland"><br>Playland</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Section Border -->
+    <div class="section-border m-y-50"></div>
+  
+    
+    <!-- Menu -->
+    <div class="container">
+      <h1 class="font-35 m-y-50 center">Menu</h1>
+      <div class="row">
+        <div class="col-6"> 
+          <img class="img-menu d-flex justify-content-around m-b-10 pc itemDetail-1" src="Images/big-mac-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile itemDetail-1" src="Images/big-mac-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold">Big Mac</p>
+                <p>$10.00</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">                
+          <img class="img-menu d-flex justify-content-around m-b-10 pc itemDetail-2" src="Images/quarter-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile itemDetail-2" src="Images/quarter-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold nowrap">Quarter Pounder</p>
+                <p>$8.99</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <img class="img-menu d-flex justify-content-around m-b-10 pc" src="Images/big-mac-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile" src="Images/big-mac-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold">Big Mac</p>
+                <p>$10.00</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <img class="img-menu d-flex justify-content-around m-b-10 pc" src="Images/big-mac-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile" src="Images/big-mac-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold">Big Mac</p>
+                <p>$10.00</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <img class="img-menu d-flex justify-content-around m-b-10 pc" src="Images/big-mac-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile" src="Images/big-mac-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold">Big Mac</p>
+                <p>$10.00</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <img class="img-menu d-flex justify-content-around m-b-10 pc" src="Images/big-mac-lg.png" alt="burger">
+          <img class="img-menu d-flex justify-content-around m-b-10 mobile" src="Images/big-mac-sm.png" alt="burger">
+          <div class="font-10">
+            <div class="d-flex justify-content-around font-12">
+              <div>
+                <p class="bold">Big Mac</p>
+                <p>$10.00</p>
+              </div>
+              <div>
+                <p class="color-white p-0 m-0">...</p>
+                <p>500cal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-grid col-6 m-x-auto">
+        <button class="btn btn-red btn-lg">See More</button>
+      </div>
+    </div>
+  
+    <!-- Item-1 Detail Modal -->
+    <aside class="modal itemDetail-1-overlay">
+      <div class="modal-container m-x-auto">
+        <div class="relative">
+          <a class="hidden absolute-top-right close itemDetail-1-close" href="#">
+            <img class="img-xs" src="images/close-black.png" alt="close-button">
+          </a>
+        </div>
+        <h2 class="center m-b-0 color-black" id="item-1-name">Big Mac</h2>
+        <div class="row">
+          <div class="m-x-auto">
+            <img class="img-lg m-0 pc" src="images/big-mac-lg.png" alt="burger">
+            <img class="img-lg m-0 mobile" src="images/big-mac-sm.png" alt="burger">
+          </div>
+            <p class="color-grey m-0">Take two 100% beef patties sourced from farmers in regions such as the Taranaki and Waikato. Add the delicious combination of crisp iceberg lettuce, melting cheese, onions, and tasty pickles, all framed between a toasted sesame seed bun.</p>
+        </div>
+        
+        <div class="right m-b-10 underline">
+          <a class="color-grey m-r-0" href="#">Ingredients & Nutrition</a>
+        </div>
+        <div class="row">
+          <div>
+            <p class="p-l-20 font-15 m-0 color-grey">$<span id="item-1-price">10.00</span></p>
+          </div>
+          <div class="inline-flex">
+            <img class="img-xs minus-btn item-1-minus-btn" src="images/minus.png" alt="minus">
+            <span class="color-grey item-1-counter">0</span>
+            <img class="img-xs plus-btn item-1-plus-btn" src="images/plus.png" alt="plus">   
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-red btn-w100" id="item-1-cart-add">Add Cart</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Item-2 Detail Modal -->
+    <aside class="modal itemDetail-2-overlay">
+      <div class="modal-container m-x-auto">
+        <div class="relative">
+          <a class="hidden absolute-top-right close itemDetail-2-close" href="#">
+            <img class="img-xs" src="images/close-black.png" alt="close-button">
+          </a>
+        </div>
+        <h2 class="center m-b-0 color-black" id="item-2-name">Quarter Pounder</h2>
+        <div class="row">
+          <div class="m-x-auto">
+            <img class="img-lg m-0 pc" src="images/quarter-lg.png" alt="burger">
+            <img class="img-lg m-0 mobile" src="images/quarter-sm.png" alt="burger">
+          </div>
+            <p class="color-grey m-0">Add a fresh twist to your favourite beef burger with the Quarter Pounder® Deluxe, now with juicy tomato and crisp lettuce. Along with a quarter pound 100% beef patty, cheese, onions and tangy pickles.</p>
+        </div>
+        
+        <div class="right m-b-10 underline">
+          <a class="color-grey m-r-0" href="#">Ingredients & Nutrition</a>
+        </div>
+        <div class="row">
+          <div>
+            <p class="p-l-20 font-15 m-0 color-grey">$<span id="item-2-price">8.99</span></p>
+          </div>
+          <div class="inline-flex">
+            <img class="img-xs minus-btn item-2-minus-btn" src="images/minus.png" alt="minus">
+            <span class="color-grey item-2-counter">0</span>
+            <img class="img-xs plus-btn item-2-plus-btn" src="images/plus.png" alt="plus">   
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-red btn-w100" id="item-2-cart-add">Add Cart</button>
+        </div>
+      </div>
+    </aside>
+
+
+    <!-- Section Border -->
+    <div class="section-border m-y-50"></div>
+  
+
+    <!-- About Us -->
+    <h1 class="font-35 center m-b-200">About Us</h1>
+    <div class="relative">
+      <div class="offset-confetti img-wrap-1">
+        <img class="img-confetti" src="images/confetti.svg" alt="">
+      </div>
+      
+      <div class="offset-smile img-wrap-2">
+        <img class="img-smile pc" src="images/smilebox-lg.png" alt="smilebox">
+        <img class="img-smile mobile" src="images/smilebox-sm.png" alt="smilebox">
+      </div>
+
+      <div class="offset-arch img-wrap-3">
+        <img class="img-arch pc" src="images/arch-lg.png" alt="arch">
+        <img class="img-arch mobile" src="images/arch-sm.png" alt="arch">
+      </div>
+    </div>
+    
+    <div class="container-sm">
+      <div class="row">
+        <div class="col-6">
+          <div class="relative"> 
+            <h3 class="absolute color-white font-15">Charity</h3>
+            <img class="img-about-us pc" src="Images/charity-lg.png" alt="charity">
+            <img class="img-about-us mobile" src="Images/charity-sm.png" alt="charity">
+            <div class="absolute-right-btm">
+              <button class="btn btn-red btn-sm">See More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="relative">
+            <h3 class="absolute color-white font-15 offset-1">Community</h3>
+            <img class="img-about-us offset-2 pc" src="Images/community-lg.png" alt="community">
+            <img class="img-about-us offset-2 mobile" src="Images/community-sm.png" alt="community">
+            <div class="absolute-right-btm offset-3">
+              <button class="btn btn-red btn-sm">See More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="relative">
+            <h3 class="absolute color-white font-15">Sastainability</h3>
+            <img class="img-about-us pc" src="Images/sastainability-lg.png" alt="sastainability">
+            <img class="img-about-us mobile" src="Images/sastainability-sm.png" alt="sastainability">
+            <div class="absolute-right-btm">
+              <button class="btn btn-red btn-sm">See More</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="relative">
+            <h3 class="absolute color-white font-15 offset-1">Careers</h3>
+            <img class="img-about-us offset-2 pc" src="Images/careers-lg.png" alt="careers">
+            <img class="img-about-us offset-2 mobile" src="Images/careers-sm.png" alt="careers">
+            <div class="absolute-right-btm offset-3">
+              <button class="btn btn-red btn-sm">See More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="m-t-50">
+    <div class="container m-x-auto">
+      <div class="row block">
+        <div class="col-8">
+          <h1 class="font-35">i'm lovin' it</h1>
+          <div class="left">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-facebook-square"></i>
+          </div>
+        </div>
+        <div class="col-4 left width-100 ">
+          <br>
+          <h2 class=""><strong>Get exclusive rewards  </strong><img class="img-xs" src="https://mcdonalds.co.nz/sites/all/themes/mcdonalds/images/McCafe-Drinks.svg" alt=""></h2>
+          <h3>Download our app</h3>
+          <img id="app-store" src="Images/app-store.png" alt="app-store">
+          <img id="google-play" src="Images/google-play.png" alt="google-play">
+        </div>
+      </div>
+
+      <div class="row justify-content-around">
+        <div class="col-2 m-btm">
+          <a href="#">
+            <h6 class="font-15">Our Menu</h6>
+            <p>New In</p>
+            <p>All Products</p>
+          </a>    
+        </div>
+        <div class="col-2 m-btm">
+          <a href="#">
+            <h6 class="font-15">Newsroom</h6>
+            <p>News</p>
+            <p>Media</p>
+          </a>
+        </div>
+        <div class="col-2 m-btm">
+          <a href="#">
+            <h6 class="font-15">Careers</h6>
+            <p>Restaurant Careers</p>
+            <p>Corporate Careers</p>
+          </a>
+        </div>
+        <div class="col-2 m-btm">
+          <a href="#">
+            <h6 class="font-15">Help</h6>
+            <p>FAQs</p>
+            <p>Contact Us</p>
+          </a>
+        </div>
+        <div class="col-2 m-btm">
+          <a href="#">
+            <h6 class="font-15 nowrap">About McDonald's</h6>
+            <p>History</p>
+            <p>Team</p>
+            <p>Ingredients</p>
+            <p>Nutrition</p>
+          </a>
+        </div>
+        <div class="col-2 m-btm">
+          <a href="#">
+            <p class="m-t-30">Sustainability</p>
+            <p>Charity</p>
+            <p>Franchising</p>
+            <p>Responsibility</p>
+          </a>
+        </div>          
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
